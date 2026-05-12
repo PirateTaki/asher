@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
     --cream: #fdf6ee;
     --warm: #f5e6d0;
@@ -20,6 +21,7 @@
     --card-bg: #fffdf9;
     --shadow: rgba(42,31,20,0.10);
   }
+
   body {
     background-color: var(--cream);
     background-image:
@@ -30,11 +32,13 @@
     color: var(--ink);
     padding: 0 0 80px 0;
   }
+
   header {
     text-align: center;
     padding: 48px 24px 32px;
     position: relative;
   }
+
   header::after {
     content: '';
     display: block;
@@ -44,6 +48,7 @@
     margin: 18px auto 0;
     border-radius: 2px;
   }
+
   h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 7vw, 3.2rem);
@@ -52,10 +57,12 @@
     letter-spacing: -0.5px;
     line-height: 1.1;
   }
+
   h1 em {
     font-style: italic;
     color: var(--olive);
   }
+
   .subtitle {
     font-size: 0.85rem;
     color: var(--soft);
@@ -64,15 +71,18 @@
     text-transform: uppercase;
     font-weight: 300;
   }
+
   /* SEARCH */
   .search-section {
     max-width: 560px;
     margin: 28px auto 0;
     padding: 0 20px;
   }
+
   .search-wrap {
     position: relative;
   }
+
   .search-input {
     width: 100%;
     border: 1.5px solid #ddd4c8;
@@ -85,10 +95,13 @@
     outline: none;
     transition: border-color 0.2s;
   }
+
   .search-input:focus {
     border-color: var(--olive-light);
   }
+
   .search-input::placeholder { color: #c9b89e; }
+
   .search-icon {
     position: absolute;
     right: 14px;
@@ -98,6 +111,7 @@
     font-size: 1rem;
     pointer-events: none;
   }
+
   .search-count {
     font-size: 0.75rem;
     color: var(--soft);
@@ -106,12 +120,14 @@
     letter-spacing: 0.04em;
     min-height: 18px;
   }
+
   /* CONFIG BANNER */
   .config-banner {
     max-width: 560px;
     margin: 0 auto 24px;
     padding: 0 20px;
   }
+
   .config-inner {
     background: #fff3ec;
     border: 1.5px dashed var(--accent);
@@ -121,6 +137,7 @@
     color: var(--ink);
     line-height: 1.6;
   }
+
   .config-inner strong { color: var(--accent); }
   .config-inner code {
     background: #f5e0d4;
@@ -129,12 +146,14 @@
     font-size: 0.8rem;
     font-family: monospace;
   }
+
   /* ADD FORM */
   .add-section {
     max-width: 560px;
     margin: 0 auto 40px;
     padding: 0 20px;
   }
+
   .add-card {
     background: var(--card-bg);
     border-radius: 16px;
@@ -142,6 +161,7 @@
     box-shadow: 0 2px 16px var(--shadow);
     border: 1px solid #ede4d8;
   }
+
   .add-card label {
     display: block;
     font-size: 0.72rem;
@@ -151,6 +171,7 @@
     margin-bottom: 8px;
     font-weight: 400;
   }
+
   .quote-input {
     width: 100%;
     border: none;
@@ -167,7 +188,9 @@
     padding-bottom: 10px;
     margin-bottom: 16px;
   }
+
   .quote-input::placeholder { color: #c9b89e; }
+
   .context-input {
     width: 100%;
     border: none;
@@ -183,7 +206,9 @@
     padding-bottom: 10px;
     margin-bottom: 16px;
   }
+
   .context-input::placeholder { color: #c9b89e; }
+
   .name-input {
     width: 100%;
     border: none;
@@ -196,7 +221,9 @@
     padding-bottom: 10px;
     margin-bottom: 20px;
   }
+
   .name-input::placeholder { color: #c9b89e; }
+
   .add-btn {
     background: var(--accent);
     color: white;
@@ -211,10 +238,13 @@
     transition: background 0.2s, transform 0.1s;
     float: right;
   }
+
   .add-btn:hover { background: #b5613b; }
   .add-btn:active { transform: scale(0.97); }
   .add-btn:disabled { background: #d4b8a8; cursor: not-allowed; }
+
   .clearfix::after { content: ''; display: table; clear: both; }
+
   /* STATUS */
   .status {
     font-size: 0.8rem;
@@ -223,8 +253,10 @@
     min-height: 20px;
     text-align: center;
   }
+
   .status.error { color: #c04a2a; }
   .status.success { color: #5a8a5a; }
+
   /* ENTRIES */
   .entries {
     max-width: 560px;
@@ -234,11 +266,13 @@
     flex-direction: column;
     gap: 16px;
   }
+
   .empty-state {
     text-align: center;
     padding: 48px 20px;
     color: var(--soft);
   }
+
   .empty-state .big {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
@@ -246,10 +280,12 @@
     margin-bottom: 8px;
     color: #c9b89e;
   }
+
   .empty-state .small {
     font-size: 0.82rem;
     letter-spacing: 0.05em;
   }
+
   .entry {
     background: var(--card-bg);
     border-radius: 14px;
@@ -259,10 +295,12 @@
     position: relative;
     animation: slideIn 0.3s ease;
   }
+
   @keyframes slideIn {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
   .entry-quote {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
@@ -273,6 +311,7 @@
     padding-left: 18px;
     border-left: 3px solid var(--olive-light);
   }
+
   .entry-context {
     font-size: 0.83rem;
     color: var(--soft);
@@ -280,6 +319,7 @@
     margin-bottom: 12px;
     padding-left: 18px;
   }
+
   .entry-meta {
     display: flex;
     justify-content: space-between;
@@ -287,29 +327,34 @@
     flex-wrap: wrap;
     gap: 4px;
   }
+
   .entry-date {
     font-size: 0.72rem;
     color: #b5a090;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+
   .entry-right {
     display: flex;
     gap: 10px;
     align-items: center;
   }
+
   .entry-age {
     font-size: 0.72rem;
     color: var(--accent);
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+
   .entry-by {
     font-size: 0.72rem;
     color: #b5a090;
     letter-spacing: 0.04em;
     font-style: italic;
   }
+
   .delete-btn {
     background: none;
     border: none;
@@ -323,7 +368,9 @@
     top: 14px;
     right: 14px;
   }
+
   .delete-btn:hover { color: var(--accent); }
+
   /* EXPORT */
   .export-bar {
     max-width: 560px;
@@ -332,6 +379,7 @@
     display: flex;
     justify-content: flex-end;
   }
+
   .export-btn {
     background: none;
     border: 1.5px solid #d4c4b0;
@@ -345,10 +393,12 @@
     font-family: 'Lato', sans-serif;
     transition: all 0.2s;
   }
+
   .export-btn:hover {
     border-color: var(--accent);
     color: var(--accent);
   }
+
   .loading {
     text-align: center;
     padding: 32px;
@@ -360,10 +410,12 @@
 </style>
 </head>
 <body>
+
 <header>
   <h1>Then Asher <em>Said…</em></h1>
   <div class="subtitle">A record of the things that stop you in your tracks</div>
 </header>
+
 <div class="search-section">
   <div class="search-wrap">
     <input class="search-input" id="searchInput" type="text" placeholder="Search quotes or context…" oninput="filterEntries()">
@@ -371,6 +423,7 @@
   </div>
   <div class="search-count" id="searchCount"></div>
 </div>
+
 <!-- This banner only shows if keys aren't set -->
 <div class="config-banner" id="configBanner" style="display:none">
   <div class="config-inner">
@@ -379,37 +432,48 @@
     with your actual Supabase project values. See the setup instructions! 🙂
   </div>
 </div>
+
 <div class="add-section">
   <div class="add-card">
     <label>What did he say?</label>
     <textarea class="quote-input" id="quoteInput" placeholder="&ldquo;I dun like dat!&rdquo;" rows="2"></textarea>
+
     <label>What was happening?</label>
     <textarea class="context-input" id="contextInput" placeholder="We were brushing out major knots and he stopped, turned around, looked me dead in the eyes…" rows="2"></textarea>
+
     <label>Added by</label>
     <input class="name-input" id="nameInput" placeholder="Mama, Grandma, Auntie…" type="text">
+
     <div class="clearfix">
       <button class="add-btn" id="addBtn" onclick="addEntry()">Save ✦</button>
     </div>
     <div class="status" id="status"></div>
   </div>
 </div>
+
 <div class="export-bar" id="exportBar" style="display:none">
   <button class="export-btn" onclick="exportEntries()">Export as text</button>
 </div>
+
 <div class="entries" id="entriesList">
   <div class="loading">Loading entries…</div>
 </div>
+
 <script>
   // ============================================================
   // 🔧 REPLACE THESE TWO VALUES WITH YOUR SUPABASE CREDENTIALS
   // ============================================================
-  const SUPABASE_URL = 'https://argnetoaovcodatvgqvh.supabase.co’;
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFyZ25ldG9hb3Zjb2RhdHZncXZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNDIyMDIsImV4cCI6MjA5MzkxODIwMn0.z2PVIFUUy07Bt2Ciw8NFS47_xBg7dqwsUnZHcOGr_ss’;
+  const SUPABASE_URL = 'https://argnetoaovcodatvgqvh.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFyZ25ldG9hb3Zjb2RhdHZncXZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNDIyMDIsImV4cCI6MjA5MzkxODIwMn0.z2PVIFUUy07Bt2Ciw8NFS47_xBg7dqwsUnZHcOGr_ss';
   // ============================================================
+
   const BIRTH_DATE = new Date('2024-10-30');
+
   const isConfigured = SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY';
+
   let client = null;
   let allEntries = [];
+
   if (isConfigured) {
     client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   } else {
@@ -420,6 +484,7 @@
         <div class="small">Finish setup to see entries here.</div>
       </div>`;
   }
+
   function getAge(dateStr) {
     const then = new Date(dateStr);
     const diff = then - BIRTH_DATE;
@@ -430,19 +495,23 @@
     if (weeks === 0) return `${months}mo old`;
     return `${months}mo ${weeks}w old`;
   }
+
   function formatDate(dateStr) {
     return new Date(dateStr).toLocaleDateString('en-US', {
       month: 'long', day: 'numeric', year: 'numeric'
     });
   }
+
   function escHtml(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+
   function setStatus(msg, type='') {
     const el = document.getElementById('status');
     el.textContent = msg;
     el.className = 'status ' + type;
   }
+
   function filterEntries() {
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
     if (!q) {
@@ -460,23 +529,28 @@
     document.getElementById('searchCount').textContent =
       n === 0 ? 'No matches' : `${n} ${n === 1 ? 'entry' : 'entries'} found`;
   }
+
   async function loadEntries() {
     if (!isConfigured) return;
     const { data, error } = await client
       .from('asher_quotes')
       .select('*')
       .order('created_at', { ascending: false });
+
     if (error) {
       document.getElementById('entriesList').innerHTML =
         `<div class="empty-state"><div class="small" style="color:#c04a2a">Could not load entries. Check your Supabase setup.</div></div>`;
       return;
     }
+
     allEntries = data || [];
     render(allEntries);
   }
+
   function render(entries) {
     const list = document.getElementById('entriesList');
     const exportBar = document.getElementById('exportBar');
+
     if (!entries || entries.length === 0) {
       list.innerHTML = `
         <div class="empty-state">
@@ -486,7 +560,9 @@
       exportBar.style.display = 'none';
       return;
     }
+
     exportBar.style.display = 'flex';
+
     list.innerHTML = entries.map(e => `
       <div class="entry" id="entry-${e.id}">
         <button class="delete-btn" onclick="deleteEntry('${e.id}')" title="Delete">×</button>
@@ -501,37 +577,46 @@
         </div>
       </div>`).join('');
   }
+
   async function addEntry() {
     if (!isConfigured) return;
     const quote = document.getElementById('quoteInput').value.trim();
     const context = document.getElementById('contextInput').value.trim();
     const added_by = document.getElementById('nameInput').value.trim();
+
     if (!quote) {
       document.getElementById('quoteInput').focus();
       setStatus('Write what he said first!', 'error');
       return;
     }
+
     const btn = document.getElementById('addBtn');
     btn.disabled = true;
     setStatus('Saving…');
+
     const { data, error } = await client
       .from('asher_quotes')
       .insert([{ quote, context: context || null, added_by: added_by || null }])
       .select();
+
     if (error) {
       setStatus('Something went wrong. Try again.', 'error');
       btn.disabled = false;
       return;
     }
+
     document.getElementById('quoteInput').value = '';
     document.getElementById('contextInput').value = '';
     setStatus('Saved! ✦', 'success');
     btn.disabled = false;
+
     // Prepend to top
     allEntries = [data[0], ...allEntries];
     render(allEntries);
+
     setTimeout(() => setStatus(''), 3000);
   }
+
   async function deleteEntry(id) {
     if (!confirm('Remove this entry?')) return;
     const { error } = await client.from('asher_quotes').delete().eq('id', id);
@@ -539,6 +624,7 @@
     allEntries = allEntries.filter(e => e.id !== id);
     render(allEntries);
   }
+
   function exportEntries() {
     const lines = allEntries.slice().reverse().map(e => {
       const by = e.added_by ? ` · added by ${e.added_by}` : '';
@@ -551,12 +637,14 @@
     a.download = 'then-asher-said.txt';
     a.click();
   }
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey && document.activeElement.id === 'quoteInput') {
       e.preventDefault();
       document.getElementById('contextInput').focus();
     }
   });
+
   if (isConfigured) loadEntries();
 </script>
 </body>
